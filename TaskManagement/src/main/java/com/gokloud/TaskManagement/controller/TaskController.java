@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,9 @@ public class TaskController {
 		//creating a method to create users in the DB
 		@PostMapping("/createuser")
 		public ResponseEntity<User> createUser(@RequestBody User user){
+			BCryptPasswordEncoder passencoder=	new BCryptPasswordEncoder();
+			String pass = passencoder.encode(user.getPassword());
+			user.setPassword(pass);
 			return ResponseEntity.ok(userrepo.save(user));
 		}
 		
@@ -61,30 +65,33 @@ public class TaskController {
 //		}
 		
 		
+		
+		//Commented this function because the password is encrypted and cannot be used as a mapping parameter
 		//get user information and the tasks along with it
-		@GetMapping("/user/{username}/{password}")
-		public ResponseEntity<CustomUserResponse> getUserInfo(@PathVariable("username") String username,@PathVariable("password") String pass){
-			User user = userrepo.findByusernameAndPassword(username, pass).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task Not Found"));
-			
-			CustomUserResponse custom = new CustomUserResponse();
-			
-			custom.setUserId(user.getUserId());
-			custom.setUsername(user.getUsername());
-			custom.setPassword(user.getPassword());
-			custom.setTasks(user.getTasks());
-			
-			return ResponseEntity.ok(custom);
-		}
-		
-		
-		
-		
-//		//finding a particular task with a given task id
-//		@GetMapping("/task/{id}")
-//		public Task getTaskById(@PathVariable("id") int num) {
-//			return taskrepo.findById(num)
-//	                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task Not Found"));
+//		@GetMapping("/user/{username}/{password}")
+//		public ResponseEntity<CustomUserResponse> getUserInfo(@PathVariable("username") String username,@PathVariable("password") String pass){
+//			
+//			User user = userrepo.findByusernameAndPassword(username, pass).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task Not Found"));
+//			
+//			CustomUserResponse custom = new CustomUserResponse();
+//			
+//			custom.setUserId(user.getUserId());
+//			custom.setUsername(user.getUsername());
+//			custom.setPassword(user.getPassword());
+//			custom.setTasks(user.getTasks());
+//			
+//			return ResponseEntity.ok(custom);
 //		}
+		
+		
+		
+		
+		//finding a particular task with a given task id
+		@GetMapping("/task/{id}")
+		public Task getTaskById(@PathVariable("id") int num) {
+			return taskrepo.findById(num)
+	                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task Not Found"));
+		}
 		
 		
 		//finding all the tasks based on the given userId
