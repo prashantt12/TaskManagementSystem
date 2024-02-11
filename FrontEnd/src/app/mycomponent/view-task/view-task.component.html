@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Task Details</h2>
+            </div>
+            <div class="card-body">
+                <div *ngIf="task">
+                    <p><strong>Task Name:</strong> {{task.taskname}}</p>
+                    <p><strong>Task Description:</strong> {{task.description}}</p>
+                    <p><strong>Status:</strong> {{task.status}}</p>
+                </div>
+                <div *ngIf="!task" class="text-center text-muted">
+                    No task selected.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

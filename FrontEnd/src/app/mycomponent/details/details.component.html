@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <div class="row justify-content-center" style="margin-left: 120px; margin-bottom: 5px;">
+        <h2>Task List</h2>
+    </div>
+    <div class="row justify-content-center" style="margin-left: 250px;">
+        <div style="margin-right: 250px;">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>TaskName</th>
+                        <th style="word-break: break-word;">Information</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of tasks">
+                        <td>{{item.taskname}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.status}}</td>
+                        <td style="vertical-align: top;">
+                            <button (click)="updateTask(item)" class="btn btn-primary">Update</button>
+                            <button (click)="deleteTask(item)" class="btn btn-danger"
+                                style="margin-top: 5px;">Delete</button>
+                            <button (click)="viewTask(item.id)" class="btn btn-primary"
+                                style="margin-top: 5px;">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="navbar">
+    <h1 id="nav-head"><a routerLink="/details">GoalGrind</a></h1>
+    <ul>
+        <li><a routerLink="/AddTask">Add Tasks</a></li>
+        <li><a routerLink="/details">Details</a></li>
+    </ul>
+</div>
+<style>
+    * {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#nav-head {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.navbar {
+    border-radius: 50px;
+    display: flex;
+    margin-left: 120px;
+    margin-right: 120px;
+    background-color: rgb(141, 255, 255);
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    margin-top: 0px;
+    gap: 320px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.navbar a {
+    text-decoration: none; 
+    color: black;
+}
+</style>
