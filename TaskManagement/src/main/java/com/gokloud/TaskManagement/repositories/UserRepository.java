@@ -12,4 +12,5 @@ import com.gokloud.TaskManagement.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	Optional<User> findByusernameAndPassword(String username,String password);
 	Optional<User> findByUserIdAndPassword(int userId, String password);
+	Optional<User> findByUsername(String username);
 }

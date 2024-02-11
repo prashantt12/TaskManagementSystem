@@ -1,11 +1,14 @@
 package com.gokloud.TaskManagement.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +27,8 @@ import com.gokloud.TaskManagement.repositories.UserRepository;
 
 
 	@RestController
-	@RequestMapping("/")
+	@RequestMapping("/User")
+	@CrossOrigin("http://localhost:4200")
 public class TaskController {
 		@Autowired
 		TaskRepository taskrepo;
@@ -51,18 +55,14 @@ public class TaskController {
 			task.setUser(user);
 			Task createdtask = taskrepo.save(task);
 			
-			createdtask.setUser(user);
-			
-			
-			//saving the task to database
-			return ResponseEntity.ok(createdtask);
+			return ResponseEntity.status(HttpStatus.CREATED).body(createdtask);
 		}
 		
-//		//getting a list of all the tasks
-//		@GetMapping("/tasks")
-//		public List<Task> getAllTasks(){
-//			return taskrepo.findAll();
-//		}
+		//getting a list of all the tasks
+		@GetMapping("/tasks")
+		public List<Task> getAllTasks(){
+			return taskrepo.findAll();
+		}
 		
 		
 		
@@ -128,6 +128,26 @@ public class TaskController {
 			
 			taskrepo.deleteById(num);
 			return ResponseEntity.ok("Task with ID " + num + " has been deleted successfully");
+		}
+		
+		//function to authenticate login
+		@PostMapping("/login")
+		public ResponseEntity<?> login(@RequestBody User user)
+		{
+			Optional<User> authenticatedUser = userrepo.findByUsername(user.getUsername());
+			if(authenticatedUser.isPresent()) {
+				User userFromDatabase = authenticatedUser.get();
+				String hashedpassword = userFromDatabase.getPassword();
+				
+				//verifying pasword
+				BCryptPasswordEncoder passencoder = new BCryptPasswordEncoder();
+				if(passencoder.matches(user.getPassword(), hashedpassword)) {
+					int userId = userFromDatabase.getUserId();
+					return ResponseEntity.ok().body(Map.of("success", true, "userId", userId));
+				}
+				
+			}
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("success", false, "message", "Invalid credentials"));
 		}
 }
 
