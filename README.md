@@ -48,7 +48,7 @@ Welcome to the **Task Management Application** Repository. This web application 
 - The *Task Repository* interface extends *JpaRepository* to handle database operations related to tasks.
 
 #### Task Repository
--The *User Repository* interface extends *JpaRepository* to handle database operations related to users.
+- The *User Repository* interface extends *JpaRepository* to handle database operations related to users.
 
 
 ### FrontEnd(Angular)
