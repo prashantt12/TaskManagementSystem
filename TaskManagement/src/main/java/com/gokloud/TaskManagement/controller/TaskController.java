@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.gokloud.TaskManagement.model.CustomUserResponse;
 import com.gokloud.TaskManagement.model.Task;
 import com.gokloud.TaskManagement.model.User;
 import com.gokloud.TaskManagement.repositories.TaskRepository;
@@ -63,26 +61,6 @@ public class TaskController {
 		public List<Task> getAllTasks(){
 			return taskrepo.findAll();
 		}
-		
-		
-		
-		//Commented this function because the password is encrypted and cannot be used as a mapping parameter
-		//get user information and the tasks along with it
-//		@GetMapping("/user/{username}/{password}")
-//		public ResponseEntity<CustomUserResponse> getUserInfo(@PathVariable("username") String username,@PathVariable("password") String pass){
-//			
-//			User user = userrepo.findByusernameAndPassword(username, pass).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task Not Found"));
-//			
-//			CustomUserResponse custom = new CustomUserResponse();
-//			
-//			custom.setUserId(user.getUserId());
-//			custom.setUsername(user.getUsername());
-//			custom.setPassword(user.getPassword());
-//			custom.setTasks(user.getTasks());
-//			
-//			return ResponseEntity.ok(custom);
-//		}
-		
 		
 		
 		
