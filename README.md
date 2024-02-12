@@ -37,7 +37,7 @@ Welcome to the **Task Management Application** Repository. This web application 
 - The *Task Controller* manages tasks and user authentication.
 - It provides endpoints for CRUP operations on tasks and user Login.
 
-### Model Classes
+#### Model Classes
 - ##### Task
   - Represents a task with properties like task name, description and status.
  
