@@ -13,6 +13,7 @@ Welcome to the **Task Management Application** Repository. This web application 
 - **Delete Task**: Provide the functionality to delete tasks.
 
 **Technical Requirements**:
+
 **Backend (Spring Boot)**:
 - Use Spring Boot to create RESTful APIs for CRUD operations (Create, Read, Update, Delete).
 - Create endpoints like /tasks for getting all tasks, /tasks/{id} for getting a specific task, /tasks/create for creating a new task, /tasks/update/{id} for updating a task, and /tasks/delete/{id} for deleting a task.
