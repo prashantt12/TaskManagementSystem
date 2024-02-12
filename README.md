@@ -68,7 +68,7 @@ Welcome to the **Task Management Application** Repository. This web application 
 
 #### Services
 - **App Logic Service**
-  -Provides methods to interact with the backend API for tasks.
+  - Provides methods to interact with the backend API for tasks.
 - **AuthService Service**
   - Provides methods for user logout.
 
