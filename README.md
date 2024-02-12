@@ -37,6 +37,22 @@ Welcome to the **Task Management Application** Repository. This web application 
 - **Update Task Component**
   - Allows the user to update the existing tasks.
 - **View Task Component**
-  -Displays detailed information about a specific task.
+  - Displays detailed information about a specific task.
+
+### Services
+- **App Logic Service**
+  -Provides methods to interact with the backend API for tasks.
+- **AuthService Service**
+  - Provides methods for user logout.
+
+
+### Routing
+Users are directed to the login page by default. After successful authentication, they can navigate to the task list, add tasks, update tasks or view task details.
+
+
+#### How to run?
+- start the backend first possibly in eclipse.
+- navigate to the angular project and **ng serve** the application
+- application should be available at the URL (`http://localhost:4200`)
   
 
