@@ -35,7 +35,7 @@ export class ApplogicService {
 
   //deleting a task
   deleteTask(userId: number, taskId: number): Observable<any> {
-    return this.httpClient.delete(`${this.baseURL}/delete/${userId}/${taskId}`);
+    return this.httpClient.delete(`${this.baseURL}/delete/${userId}/${taskId}`, { responseType: 'text' });
   }
 
 }

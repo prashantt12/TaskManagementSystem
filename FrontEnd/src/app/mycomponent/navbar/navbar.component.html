@@ -1,10 +1,14 @@
 <div class="navbar">
     <h1 id="nav-head"><a routerLink="/details">GoalGrind</a></h1>
     <ul>
-        <li><a routerLink="/AddTask">Add Tasks</a></li>
-        <li><a routerLink="/details">Details</a></li>
+        <li><a class="my-nav" routerLink="/AddTask">Add Tasks</a></li>
+        <li><a class="my-nav" routerLink="/details">Details</a></li>
+        <li>
+            <a class="my-nav" (click)="logout()">Logout</a>
+        </li>
     </ul>
 </div>
+
 <style>
     * {
         font-family: 'Courier New', Courier, monospace;
@@ -40,5 +44,25 @@
     .navbar a {
         text-decoration: none;
         color: white;
+
+    }
+
+    .navbar .my-nav {
+    cursor: pointer;
+}
+
+    .navbar .my-nav:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar .nav-link {
+        text-decoration: none;
+        color: white;
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
     }
 </style>

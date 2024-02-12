@@ -52,8 +52,7 @@ export class DetailsComponent {
     }
 
     this.appservice.deleteTask(+userId, task.id).subscribe(() => {
-      this.router.navigate(['/details']);
-      // window.location.reload();
+      window.location.reload();
     }, error => {
       console.error('Error deleting task: ', error);
     });
